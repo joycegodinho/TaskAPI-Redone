@@ -5,28 +5,30 @@ module.exports = gql `
     type Task {
         id: ID!
         content: String!
-        completed: Boolean!
+        completed: Boolean
         createdAt: DateTime!
         updatedAt: DateTime!
     }
     type User {
         id: ID!
-        username: String!
+        username: String
         email: String!
-        tasks: [Task!]!
+
     }
 
     type Query {
         tasks: [Task!]!
         task(id: ID!): Task!
+        users: [User!]!
+        me: User!
     }
 
     type Mutation {
-        newTask(content: String!): Task!
-        updateTask(id: ID!, content: String!, completed: Boolean!): Task!
+        newTask(content: String!, completed: Boolean): Task!
+        updateTask(id: ID!, content: String!, completed: Boolean): Task!
         deleteTask(id: ID!): Boolean!
         signUp(username: String!, email: String!, password: String!): String!
-        signIn(username: String, email: String, password: String!): String!
+        signIn(email: String!, password: String!): String!
     }
 
 `;

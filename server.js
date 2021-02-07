@@ -1,17 +1,12 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 require('./config/db');
 const models = require('./models')
 
 const port = process.env.PORT || 3000;
-
-let tasks = [
-    {id: '1', content: 'this is a task', completed: true},
-    {id: '2', content: 'this is another task', completed: false},
-    {id: '3', content: 'this is the third task', completed: true}
-];
 
 const typeDefs = require ('./graphql/schema');
 
