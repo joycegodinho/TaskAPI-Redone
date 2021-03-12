@@ -16,7 +16,7 @@ const resolvers = require ('./graphql/resolvers');
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }));
 app.use(cors());
 
 const getUser = token => {

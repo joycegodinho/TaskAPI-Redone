@@ -5,6 +5,7 @@ module.exports = gql `
     type Task {
         id: ID!
         content: String!
+        author: User!
         completed: Boolean
         createdAt: DateTime!
         updatedAt: DateTime!
@@ -15,9 +16,15 @@ module.exports = gql `
         email: String!
 
     }
+    type TaskFeed {
+        tasks: [Task!]!
+        cursor: String!
+        hasNextPage: Boolean!
+
+    }
 
     type Query {
-        tasks: [Task!]!
+        tasks(cursor: String): TaskFeed
         task(id: ID!): Task!
         users: [User!]!
         me: User!
