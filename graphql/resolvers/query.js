@@ -1,12 +1,12 @@
 
 module.exports = {
-    tasks: async (_, { cursor }, { models, user }) => {
+    tasks: async (_, { cursor }, { models }) => {
         const limit = 10;
         let hasNextPage = false;
         let cursorQuery = {};
 
         if(cursor){
-            cursorQuery =  { _id: { $lt: cursor } }, {author: user.id} ;
+            cursorQuery = { _id: { $lt: cursor } };
         }
         let tasks = await models.Task.find(cursorQuery).sort({ _id: -1 }).limit(limit + 1);
         if(tasks.length > limit){
@@ -22,8 +22,8 @@ module.exports = {
             hasNextPage
         }
     },
-    task: async (_, args, { models }) => {
-        return await models.Task.findById(args.id);
+    task: async (_, { id }, { models }) => {
+        return await models.Task.findById(id);
     },
     users: async (_, __, { models }) => {
         return await models.User.find({});
