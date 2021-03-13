@@ -4,7 +4,9 @@ var url = 'mongodb://localhost:27017/TaskAPI2';
 
 const options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true, 
+    useCreateIndex: true,
+    useFindAndModify: false
 };
 
 const db = mongoose.connect(url, options)

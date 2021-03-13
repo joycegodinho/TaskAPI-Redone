@@ -21,7 +21,7 @@ module.exports = {
         if (!user){
             throw new AuthenticationError('You must be signed in to update a task')
         }
-        let task = models.Note.findById(id);
+        let task = await models.Task.findById(id);
         if (task && String(task.author) !== user.id) {
             throw new ForbiddenError("You don't have permission to update this task")
         }
@@ -38,7 +38,7 @@ module.exports = {
         if (!user){
             throw new AuthenticationError('You must be signed in to delete a task')
         }
-        let task = models.Note.findById(id);
+        let task = await models.Task.findById(id);
         if (task && String(task.author) !== user.id) {
             throw new ForbiddenError("You don't have permission to delete this task")
         }
