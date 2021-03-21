@@ -1,6 +1,6 @@
 
 module.exports = {
-    tasks: async (_, { cursor }, { models }) => {
+    tasks: async (_, { cursor }, { user, models }) => {
         const limit = 10;
         let hasNextPage = false;
         let cursorQuery = {};
@@ -8,7 +8,7 @@ module.exports = {
         if(cursor){
             cursorQuery = { _id: { $lt: cursor } };
         }
-        let tasks = await models.Task.find(cursorQuery).sort({ _id: -1 }).limit(limit + 1);
+        let tasks = await models.Task.find({$and:[{author: user.id},cursorQuery]}).sort({ _id: -1 }).limit(limit + 1);
         if(tasks.length > limit){
             hasNextPage = true;
             tasks = tasks.slice(0,-1);

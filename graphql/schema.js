@@ -6,7 +6,7 @@ module.exports = gql `
         id: ID!
         content: String!
         author: User!
-        completed: Boolean
+        completed: String
         createdAt: DateTime!
         updatedAt: DateTime!
     }
@@ -31,8 +31,8 @@ module.exports = gql `
     }
 
     type Mutation {
-        newTask(content: String!, completed: Boolean): Task!
-        updateTask(id: ID!, content: String!, completed: Boolean): Task!
+        newTask(content: String!, completed: String): Task!
+        updateTask(id: ID!, content: String!, completed: String): Task!
         deleteTask(id: ID!): Boolean!
         signUp(username: String!, email: String!, password: String!): String!
         signIn(email: String!, password: String!): String!

@@ -8,7 +8,7 @@ const taskSchema = new Schema ({
         require: true
     },
     completed: {
-        type: Boolean,
+        type: String,
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
