@@ -25,6 +25,7 @@ module.exports = gql `
 
     type Query {
         tasks(cursor: String): TaskFeed
+        tasksToDo(cursor: String): TaskFeed
         task(id: ID!): Task!
         users: [User!]!
         me: User!
